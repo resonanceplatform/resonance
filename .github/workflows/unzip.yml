@@ -1,0 +1,19 @@
+name: Unzip project
+
+on:
+  push:
+    paths:
+      - resonance.zip
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: unzip resonance.zip
+      - run: rm resonance.zip
+      - run: git config user.name "github-actions"
+      - run: git config user.email "actions@github.com"
+      - run: git add .
+      - run: git commit -m "Unzip project files"
+      - run: git push
